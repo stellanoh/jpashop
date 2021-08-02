@@ -41,13 +41,27 @@ public class MemberServiceTest {
         assertEquals(member, memberRepository.findOne(saveId));
     }
     
-    @Test
+    @Test(expected = IllegalStateException.class) //try/catch 문 없이 처리방법
     public void memberValidationTest() throws Exception {
         //given
-        
+        Member member1 = new Member();
+        member1.setName("kim1");
+
+        Member member2 = new Member();
+        member2.setName("kim1");
+
         //when
-        
+        memberService.join(member1);
+        memberService.join(member2);//예외발생 해야함
+        /**
+         * try {
+         *
+         * }catch (IllegalStateException e){
+         * return;
+         * }*/
+
         //then
+        fail("예외가 발생해야 합니다");
     }
 
 }
