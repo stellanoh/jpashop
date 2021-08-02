@@ -14,8 +14,8 @@ import static org.junit.Assert.*;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @Rollback(false)
-public class MemberRepositoryTest {
-    @Autowired MemberRepository memberRepository;
+public class StudyMemberRepositoryTest {
+    @Autowired StudyMemberRepository memberRepository;
 
     @Test
     @Transactional
