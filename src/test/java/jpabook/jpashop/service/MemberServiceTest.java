@@ -10,6 +10,8 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityManager;
+
 import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
@@ -22,6 +24,9 @@ public class MemberServiceTest {
     @Autowired
     MemberRepository memberRepository;
 
+    @Autowired
+    EntityManager em;
+
     @Test
     @Rollback(false) //db 저장
     public void registerTest() throws Exception {
@@ -32,6 +37,7 @@ public class MemberServiceTest {
         Long saveId = memberService.join(member);
 
         //then
+        em.flush();
         assertEquals(member, memberRepository.findOne(saveId));
     }
     
