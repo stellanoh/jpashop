@@ -45,7 +45,7 @@ public class OrderController {
     public String orderList(@ModelAttribute("orderSearch")OrderSearch orderSearch, Model model) {
         List<Order> orders = orderService.findOrders(orderSearch); //단순 화면 조회일 경우 단순 위임만 있는 서비스를 이용하는 것이 아닌 레포지토리 직접 접근도 괜찮음
         model.addAttribute("orders", orders);
-        return "order/orderList";
+        return "order/orderList"; //상품별 상세보기를 위해서는 orderId별로 페이지 이동 /orderList/+orderId
     }
 
     @PostMapping("/orders/{orderId}/cancel")
